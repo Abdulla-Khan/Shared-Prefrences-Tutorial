@@ -6,7 +6,7 @@ import 'package:localiztion/logged_in_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -27,8 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String? val = pref.getString('login');
     if (val != null) {
-      Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (_) => const Logged()), (route) => false);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          (route) => false);
     }
   }
 
@@ -41,15 +43,15 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             const Text(
               'Login',
-              style: const TextStyle(fontSize: 35),
+              style: TextStyle(fontSize: 35),
             ),
             const SizedBox(height: 10),
             TextFormField(
               controller: email,
               decoration: const InputDecoration(
                 labelText: 'Email',
-                border: const OutlineInputBorder(),
-                suffixIcon: const Icon(Icons.email_outlined),
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(Icons.email_outlined),
               ),
             ),
             const SizedBox(
@@ -88,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SharedPreferences pref = await SharedPreferences.getInstance();
         await pref.setString('login', body['token']);
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => const Logged()));
+            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
       } else {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Not')));

@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:localiztion/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Logged extends StatefulWidget {
-  const Logged({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _LoggedState createState() => _LoggedState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _LoggedState extends State<Logged> {
+class _HomeScreenState extends State<HomeScreen> {
   String token = '';
+  @override
   void initState() {
     get();
     super.initState();
@@ -31,7 +32,7 @@ class _LoggedState extends State<Logged> {
         child: Column(
           children: [
             Text(
-              'Logged In ${token}',
+              'Logged In $token',
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(
@@ -44,7 +45,7 @@ class _LoggedState extends State<Logged> {
                   await pref.clear();
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => LoginScreen()),
+                      MaterialPageRoute(builder: (_) => const LoginScreen()),
                       (route) => false);
                 },
                 icon: const Icon(Icons.logout_rounded),
