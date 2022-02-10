@@ -27,14 +27,14 @@ class _LoggedState extends State<Logged> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 250, left: 39),
+        padding: const EdgeInsets.only(top: 250, left: 39),
         child: Column(
           children: [
             Text(
               'Logged In ${token}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             OutlinedButton.icon(
@@ -47,8 +47,8 @@ class _LoggedState extends State<Logged> {
                       MaterialPageRoute(builder: (_) => LoginScreen()),
                       (route) => false);
                 },
-                icon: Icon(Icons.logout_rounded),
-                label: Text('Log Out'))
+                icon: const Icon(Icons.logout_rounded),
+                label: const Text('Log Out'))
           ],
         ),
       ),

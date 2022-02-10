@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController password = TextEditingController();
 
+  @override
   void initState() {
     checkLogin(context);
     super.initState();
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String? val = pref.getString('login');
     if (val != null) {
       Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (_) => Logged()), (route) => false);
+          MaterialPageRoute(builder: (_) => const Logged()), (route) => false);
     }
   }
 
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 suffixIcon: const Icon(Icons.email_outlined),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
@@ -86,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
         final body = jsonDecode(response.body);
         SharedPreferences pref = await SharedPreferences.getInstance();
         await pref.setString('login', body['token']);
-        Navigator.push(context, MaterialPageRoute(builder: (_) => Logged()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => const Logged()));
       } else {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Not')));
